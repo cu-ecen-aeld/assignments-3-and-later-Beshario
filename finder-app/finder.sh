@@ -3,7 +3,7 @@
 # expecting two arguemnt, filesdir as 1, and search_string as2
 
 if [ $# -ne 2 ]; then
-        echo "please provide two arguemnts: file_path, search_string"
+        echo "Usage: $0 file_path, search_string"
         exit 1
 fi
 if ! [ -d "$1" ]; then
