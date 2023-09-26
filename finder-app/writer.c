@@ -1,8 +1,7 @@
 #include <syslog.h>
 #include <stdio.h>
 int main (int argc, char *argv[]) {
-    // print application started
-    printf("Application started\n");
+
     openlog("writer", LOG_PID|LOG_CONS, LOG_USER);
     if (argc != 3){
         syslog(LOG_ERR, "Usage: %s file_path content", argv[0]); 
