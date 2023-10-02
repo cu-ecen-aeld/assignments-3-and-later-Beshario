@@ -8,7 +8,6 @@ check_status() {
         echo "$1 was successful"
     else
         echo "$1 failed"
-        echo "Special string"
     fi
 }
 
@@ -61,8 +60,7 @@ then
 fi
 echo "Removing the old writer utility and compiling as a native application"
 make clean
-make
-check_status "make all"
+
 for i in $( seq 1 $NUMFILES)
 do
 	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"

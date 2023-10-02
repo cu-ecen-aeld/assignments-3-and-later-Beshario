@@ -1,5 +1,8 @@
 #include "systemcalls.h"
 
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
 /**
  * @param cmd the command to execute with system()
  * @return true if the command in @param cmd was executed
@@ -11,12 +14,21 @@ bool do_system(const char *cmd)
 {
 
 /*
- * TODO  add your code here
+ * Done  add your code here
  *  Call the system() function with the command set in the cmd
  *   and return a boolean true if the system() call completed with success
  *   or false() if it returned a failure
 */
-
+    if (cmd == NULL)
+    {
+        return false;
+    }
+    const int result = system(cmd);
+    if(result == -1)
+    {
+        return false;
+    }
+    
     return true;
 }
 
@@ -45,23 +57,59 @@ bool do_exec(int count, ...)
         command[i] = va_arg(args, char *);
     }
     command[count] = NULL;
-    // this line is to avoid a compile warning before your implementation is complete
-    // and may be removed
-    command[count] = command[count];
+    va_end(args);
 
 /*
- * TODO:
+ * Done:
  *   Execute a system command by calling fork, execv(),
  *   and wait instead of system (see LSP page 161).
  *   Use the command[0] as the full path to the command to execute
  *   (first argument to execv), and use the remaining arguments
  *   as second argument to the execv() command.
- *
 */
+    pid_t pid = fork();
+    // both process will execute from here, so both cases will be executed
+    if (pid == 0){
+        // this is the child process
+        execv(command[0], command);
+        // if execv returns, it must have failed
+        perror("execv");
+        return false;
+    }
+    else if (pid > 0 )
+    {
+        // this is the parent process
+        int status;
+        waitpid(pid, &status, 0);
+        if (WIFEXITED(status))
+        {
+            // child exited normally
+            if (WEXITSTATUS(status) == 0)
+            {
+                // child exited with success
+                return true;
+            }
+            else
+            {
+                // child exited with failure
+                perror("child exited with failure");
+                return false;
+            }
+        }
+        else
+        {
+            // child did not exit normally
+            perror("child did not exit normally");
+            return false;
+        }
+    } 
+    else
+    {
+        // fork failed
+        perror("fork");
+        return false;
+    }
 
-    va_end(args);
-
-    return true;
 }
 
 /**
@@ -82,18 +130,61 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
     command[count] = NULL;
     // this line is to avoid a compile warning before your implementation is complete
     // and may be removed
-    command[count] = command[count];
-
+    va_end(args);
 
 /*
- * TODO
+ * DONE:
  *   Call execv, but first using https://stackoverflow.com/a/13784315/1446624 as a refernce,
  *   redirect standard out to a file specified by outputfile.
  *   The rest of the behaviour is same as do_exec()
  *
 */
-
-    va_end(args);
+    pid_t pid = fork();
+    int fd = fopen(outputfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd < 0) {
+        perror("fopen");
+        return false;
+    }
+    switch (pid)
+    {
+        case -1:
+            perror("fork");
+            return false;
+        case 0:
+            // this is the child process
+            dup2(fd, STDOUT_FILENO);
+            execv(command[0], command);
+            // if execv returns, it must have failed
+            perror("execv");
+            close(fd);
+            return false;
+        default:
+            close(fd);
+            // this is the parent process
+            int status;
+            waitpid(pid, &status, 0);
+            if (WIFEXITED(status))
+            {
+                // child exited normally
+                if (WEXITSTATUS(status) == 0)
+                {
+                    // child exited with success
+                    return true;
+                }
+                else
+                {
+                    // child exited with failure
+                    perror("child exited with failure");
+                    return false;
+                }
+            }
+            else
+            {
+                // child did not exit normally
+                perror("child did not exit normally");
+                return false;
+            }
+    }
 
     return true;
 }
