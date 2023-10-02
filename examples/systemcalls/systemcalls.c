@@ -1,8 +1,9 @@
 #include "systemcalls.h"
-
+#include <sys/wait.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
 /**
  * @param cmd the command to execute with system()
  * @return true if the command in @param cmd was executed
@@ -140,7 +141,7 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
  *
 */
     pid_t pid = fork();
-    int fd = fopen(outputfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    int fd = open(outputfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd < 0) {
         perror("fopen");
         return false;
