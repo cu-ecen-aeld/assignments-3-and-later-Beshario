@@ -22,11 +22,13 @@ bool do_system(const char *cmd)
 */
     if (cmd == NULL)
     {
+        printf("failure: cmd is NULL\n");
         return false;
     }
     const int result = system(cmd);
     if(result == -1)
     {
+        perror("system call failed");
         return false;
     }
     
@@ -60,6 +62,11 @@ bool do_exec(int count, ...)
     command[count] = NULL;
     va_end(args);
 
+    if (command[0][0] != '/') {
+        perror("failure: command is not an absolute path\n");
+        return false;
+    }
+
 /*
  * Done:
  *   Execute a system command by calling fork, execv(),
@@ -72,8 +79,10 @@ bool do_exec(int count, ...)
     // both process will execute from here, so both cases will be executed
     if (pid == 0){
         // this is the child process
-        execv(command[0], command);
-        // if execv returns, it must have failed
+        if (execv(command[0], command) == -1) {
+            printf("failure: command is not an absolute path\n");
+            return false;
+        }
         perror("execv");
         return false;
     }
@@ -124,7 +133,7 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
     va_start(args, count);
     char * command[count+1];
     int i;
-    for(i=0; i<count; i++)
+    for (i=0; i<count; i++)
     {
         command[i] = va_arg(args, char *);
     }
@@ -132,7 +141,10 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
     // this line is to avoid a compile warning before your implementation is complete
     // and may be removed
     va_end(args);
-
+    if (command[0][0] != '/') {
+        perror("failure: command is not an absolute path\n");
+        return false;
+    }
 /*
  * DONE:
  *   Call execv, but first using https://stackoverflow.com/a/13784315/1446624 as a refernce,
@@ -141,6 +153,7 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
  *
 */
     pid_t pid = fork();
+
     int fd = open(outputfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd < 0) {
         perror("fopen");
@@ -153,11 +166,13 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
             return false;
         case 0:
             // this is the child process
-            dup2(fd, STDOUT_FILENO);
-            execv(command[0], command);
-            // if execv returns, it must have failed
-            perror("execv");
+            if (dup2(fd, STDOUT_FILENO) < 0) { perror("dup2"); return false; }
             close(fd);
+
+            if (execv(command[0], command) == -1) {
+                return false;
+            }
+            perror("execv");
             return false;
         default:
             close(fd);
