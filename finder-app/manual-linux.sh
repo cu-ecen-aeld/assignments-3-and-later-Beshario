@@ -90,7 +90,7 @@ echo "Library dependencies"
 ${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter"
 ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
-echo "Copying dependencies to rootfs"
+echo "Copying dependencies to filesystem root"
 # DONE: Add library dependencies to rootfs
 SYSROOT=$(${CROSS_COMPILE}gcc -print-sysroot)
 # get a list of the itterpretter and copy it to the lib64 directory
