@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # expecting two arguemnt, filesdir as 1, and search_string as2
 
