@@ -16,8 +16,7 @@
 #include <time.h>
 #include <netinet/in.h>
 
-//A6-1 additions
-//this structure contains linked list data for each thread that is split off for new connection
+// linkedlist data for each thread
 typedef struct {
     pthread_t threadId;
     int client_fd;
@@ -25,6 +24,7 @@ typedef struct {
     pthread_mutex_t *pMutex;
 } thread_data_t;
 
+// linked list nodes for threads
 typedef struct node {
     thread_data_t* data;
     struct node* next;
@@ -34,10 +34,9 @@ typedef struct node {
 
 //thread functions
 void* client_handler(void* arg);
-void* timestamp(void *thread_param);
 void insertNode(thread_data_t* data);
 void removeCompletedThreads();
 void make_Daemon(void);
 static void signal_handler (int signal_number);
-void do_shutdown(void);
+void clean_up(void);
 void *get_in_addr(struct sockaddr *sa);

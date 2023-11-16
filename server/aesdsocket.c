@@ -138,7 +138,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Close the server socket 
-    do_shutdown();
+    clean_up();
 
     return 0;
 }
@@ -202,7 +202,7 @@ static void signal_handler (int signal_number) {
   syslog(LOG_INFO, "Caught signal, exiting");
   isError=true;
   
-  do_shutdown();
+  clean_up();
 }
 
 void make_Daemon(void) {
@@ -229,35 +229,7 @@ void make_Daemon(void) {
 
 }
 
-
-void* timestamp(void * arg){
-    while (1) {
-        sleep(10); // Wait for 10 seconds
-
-        pthread_mutex_lock(&fileMutex); // Lock for file access
-        FILE* file = fopen(DATA_FILE, "a+");
-        if (file != NULL) {
-            time_t rawtime;
-            struct tm* timeinfo;
-
-            // Get current time
-            time(&rawtime);
-            timeinfo = localtime(&rawtime);
-
-            char timestamp[30];
-            // Format timesteamp
-            strftime(timestamp, sizeof(timestamp),"%a, %d %b %Y %H:%M:%S %z", timeinfo);
-
-            fprintf(file, "timestamp: %s\n", timestamp);
-            fclose(file);
-        }
-        pthread_mutex_unlock(&fileMutex); // Unlock file access
-    }
-
-}
-
-
-void do_shutdown(void) {
+void clean_up(void) {
     //join threads
     pthread_mutex_lock(&listMutex);
     Node* current = head;
