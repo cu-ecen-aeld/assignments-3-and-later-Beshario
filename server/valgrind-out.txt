@@ -1,0 +1,2455 @@
+==68026== Memcheck, a memory error detector
+==68026== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==68026== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==68026== Command: ./aesdsocket
+==68026== Parent PID: 68024
+==68026== 
+--68026-- 
+--68026-- Valgrind options:
+--68026--    --error-exitcode=1
+--68026--    --leak-check=full
+--68026--    --show-leak-kinds=all
+--68026--    --track-origins=yes
+--68026--    --errors-for-leak-kinds=definite
+--68026--    --verbose
+--68026--    --log-file=valgrind-out.txt
+--68026-- Contents of /proc/version:
+--68026--   Linux version 6.2.0-36-generic (buildd@lcy02-amd64-050) (x86_64-linux-gnu-gcc-11 (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #37~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Mon Oct  9 15:34:04 UTC 2
+--68026-- 
+--68026-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-ssse3-avx
+--68026-- Page sizes: currently 4096, max supported 4096
+--68026-- Valgrind library directory: /usr/libexec/valgrind
+--68026-- Reading syms from /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket
+--68026-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--68026--   Considering /usr/lib/debug/.build-id/97/18d3757f00d2366056830aae09698dbd35e32c.debug ..
+--68026--   .. build-id is valid
+--68026-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--68026--    object doesn't have a symbol table
+--68026--    object doesn't have a dynamic symbol table
+--68026-- Scheduler: using generic scheduler lock implementation.
+--68026-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==68026== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-68026-by-bj-on-???
+==68026== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-68026-by-bj-on-???
+==68026== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-68026-by-bj-on-???
+==68026== 
+==68026== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==68026== don't want to do, unless you know exactly what you're doing,
+==68026== or are doing some strange experiment):
+==68026==   /usr/bin/vgdb --pid=68026 ...command...
+==68026== 
+==68026== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==68026==   /path/to/gdb ./aesdsocket
+==68026== and then give GDB the following command
+==68026==   target remote | /usr/bin/vgdb --pid=68026
+==68026== --pid is optional if only one valgrind process is running
+==68026== 
+--68026-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
+--68026-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
+--68026-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--68026--    object doesn't have a symbol table
+--68026-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+--68026--    object doesn't have a symbol table
+==68026== WARNING: new redirection conflicts with existing -- ignoring it
+--68026--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
+--68026--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x04852e30 strlen
+--68026-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4853cd0 (strcmp)
+--68026-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4857840 (mempcpy)
+--68026-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--68026--   Considering /usr/lib/debug/.build-id/a4/3bfc8428df6623cd498c9c0caeb91aec9be4f9.debug ..
+--68026--   .. build-id is valid
+==68026== WARNING: new redirection conflicts with existing -- ignoring it
+--68026--     old: 0x04924c60 (memalign            ) R-> (1011.0) 0x04852080 memalign
+--68026--     new: 0x04924c60 (memalign            ) R-> (1017.0) 0x04852050 aligned_alloc
+==68026== WARNING: new redirection conflicts with existing -- ignoring it
+--68026--     old: 0x04924c60 (memalign            ) R-> (1011.0) 0x04852080 memalign
+--68026--     new: 0x04924c60 (memalign            ) R-> (1017.0) 0x04852020 aligned_alloc
+==68026== WARNING: new redirection conflicts with existing -- ignoring it
+--68026--     old: 0x04924c60 (memalign            ) R-> (1011.0) 0x04852080 memalign
+--68026--     new: 0x04924c60 (memalign            ) R-> (1017.0) 0x04852050 aligned_alloc
+==68026== WARNING: new redirection conflicts with existing -- ignoring it
+--68026--     old: 0x04924c60 (memalign            ) R-> (1011.0) 0x04852080 memalign
+--68026--     new: 0x04924c60 (memalign            ) R-> (1017.0) 0x04852020 aligned_alloc
+--68026-- REDIR: 0x4927720 (libc.so.6:strnlen) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49279e0 (libc.so.6:strpbrk) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49272e0 (libc.so.6:strcmp) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4945cd0 (libc.so.6:wcsnlen) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49286d0 (libc.so.6:memset) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4944540 (libc.so.6:wcslen) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4928c10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4944370 (libc.so.6:wcschr) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4927260 (libc.so.6:index) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4927960 (libc.so.6:rindex) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49285a0 (libc.so.6:memmove) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49443f0 (libc.so.6:wcscmp) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49289e0 (libc.so.6:stpncpy) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49449b0 (libc.so.6:wmemchr) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4927830 (libc.so.6:strncmp) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4928a70 (libc.so.6:strcasecmp) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4927420 (libc.so.6:strcspn) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4944470 (libc.so.6:wcscpy) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49271d0 (libc.so.6:strcat) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4928b60 (libc.so.6:strncasecmp_l) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4928480 (libc.so.6:bcmp) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4930570 (libc.so.6:memrchr) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x492a010 (libc.so.6:strchrnul) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4927390 (libc.so.6:strcpy) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4928b10 (libc.so.6:strcasecmp_l) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49276a0 (libc.so.6:strlen) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49278d0 (libc.so.6:strncpy) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4928950 (libc.so.6:stpcpy) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49283f0 (libc.so.6:memchr) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4927b00 (libc.so.6:strspn) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x49287d0 (libc.so.6:mempcpy) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4928ac0 (libc.so.6:strncasecmp) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4929f80 (libc.so.6:rawmemchr) redirected to 0x4843220 (_vgnU_ifunc_wrapper)
+--68026-- REDIR: 0x4939650 (libc.so.6:__strrchr_sse2) redirected to 0x4852870 (__strrchr_sse2)
+--68026-- REDIR: 0x4943f60 (libc.so.6:__memset_sse2_unaligned) redirected to 0x4856770 (memset)
+--68026-- REDIR: 0x49240a0 (libc.so.6:malloc) redirected to 0x484c820 (malloc)
+--68026-- REDIR: 0x49243e0 (libc.so.6:free) redirected to 0x484f210 (free)
+--68026-- REDIR: 0x4927fc0 (libc.so.6:__GI_strstr) redirected to 0x4857ae0 (__strstr_sse2)
+--68026-- REDIR: 0x4933880 (libc.so.6:__memchr_sse2) redirected to 0x4853d50 (memchr)
+--68026-- REDIR: 0x4943870 (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4853e00 (memcpy@GLIBC_2.2.5)
+--68026-- REDIR: 0x4939210 (libc.so.6:__strchr_sse2) redirected to 0x4852990 (__strchr_sse2)
+--68026-- REDIR: 0x4924740 (libc.so.6:realloc) redirected to 0x4851c50 (realloc)
+--68026-- REDIR: 0x4939950 (libc.so.6:__strlen_sse2) redirected to 0x4852d70 (__strlen_sse2)
+--68026-- REDIR: 0x4a21d30 (libc.so.6:__memcmp_sse4_1) redirected to 0x4855f80 (__memcmp_sse4_1)
+--68026-- REDIR: 0x4943850 (libc.so.6:__mempcpy_sse2_unaligned) redirected to 0x4857440 (mempcpy)
+--68026-- REDIR: 0x4939440 (libc.so.6:__strchrnul_sse2) redirected to 0x4857330 (strchrnul)
+--68026-- REDIR: 0x493e890 (libc.so.6:__strcpy_sse2_unaligned) redirected to 0x4852e60 (strcpy)
+--68026-- REDIR: 0x4925520 (libc.so.6:calloc) redirected to 0x48519d0 (calloc)
+--68026-- REDIR: 0x4931d70 (libc.so.6:__strcmp_sse2_unaligned) redirected to 0x4853bd0 (strcmp)
+==68026== Thread 2:
+==68026== Conditional jump or move depends on uninitialised value(s)
+==68026==    at 0x10B35D: get_in_addr (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AE42: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Uninitialised value was created by a stack allocation
+==68026==    at 0x10ABF1: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== Conditional jump or move depends on uninitialised value(s)
+==68026==    at 0x49C7097: inet_ntop (inet_ntop.c:55)
+==68026==    by 0x10AE62: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Uninitialised value was created by a stack allocation
+==68026==    at 0x10ABF1: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== Conditional jump or move depends on uninitialised value(s)
+==68026==    at 0x49C709C: inet_ntop (inet_ntop.c:55)
+==68026==    by 0x10AE62: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Uninitialised value was created by a stack allocation
+==68026==    at 0x10ABF1: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== Conditional jump or move depends on uninitialised value(s)
+==68026==    at 0x4852D79: __strlen_sse2 (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48F5D30: __vfprintf_internal (vfprintf-internal.c:1517)
+==68026==    by 0x499D1A9: __vsyslog_internal (syslog.c:229)
+==68026==    by 0x499D689: syslog (syslog.c:109)
+==68026==    by 0x10AE85: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Uninitialised value was created by a stack allocation
+==68026==    at 0x10ABF1: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== Thread 1:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDC7B: fclose@@GLIBC_2.2.5 (iofclose.c:48)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 1
+==68026==    at 0x490C2B4: _IO_un_link (genops.c:54)
+==68026==    by 0x48FDD34: fclose@@GLIBC_2.2.5 (iofclose.c:49)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD35: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD46: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD4D: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD5A: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd310 is 224 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD64: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD6B: fclose@@GLIBC_2.2.5 (iofclose.c:52)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid write of size 8
+==68026==    at 0x48FDD6E: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD72: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd314 is 228 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x490AE98: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:130)
+==68026==    by 0x48FDD8E: fclose@@GLIBC_2.2.5 (iofclose.c:53)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2a0 is 112 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD8F: _IO_acquire_lock_fct (libioP.h:883)
+==68026==    by 0x48FDD8F: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCA1: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDCA1: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDCA8: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDCA8: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd314 is 228 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid write of size 8
+==68026==    at 0x48FDDA0: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDDA0: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDDA8: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDDA8: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd310 is 224 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCB2: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd308 is 216 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x490AFFD: _IO_file_finish@@GLIBC_2.2.5 (fileops.c:169)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2a0 is 112 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x490D738: _IO_default_finish (genops.c:603)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd268 is 56 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x490D747: _IO_default_finish (genops.c:609)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd290 is 96 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x490D760: _IO_default_finish (genops.c:612)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd278 is 72 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 1
+==68026==    at 0x490D776: _IO_un_link (genops.c:54)
+==68026==    by 0x490D776: _IO_default_finish (genops.c:618)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDCE1: fclose@@GLIBC_2.2.5 (iofclose.c:58)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2f0 is 192 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCEF: fclose@@GLIBC_2.2.5 (iofclose.c:71)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd278 is 72 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid free() / delete / delete[] / realloc()
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+--68026-- REDIR: 0x493fed0 (libc.so.6:__stpcpy_sse2_unaligned) redirected to 0x4856370 (__stpcpy_sse2_unaligned)
+==68026== Invalid read of size 4
+==68026==    at 0x48FDC7B: fclose@@GLIBC_2.2.5 (iofclose.c:48)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 1
+==68026==    at 0x490C2B4: _IO_un_link (genops.c:54)
+==68026==    by 0x48FDD34: fclose@@GLIBC_2.2.5 (iofclose.c:49)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD35: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD46: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD4D: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD5A: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd310 is 224 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD64: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD6B: fclose@@GLIBC_2.2.5 (iofclose.c:52)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid write of size 8
+==68026==    at 0x48FDD6E: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD72: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd314 is 228 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x490AE98: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:130)
+==68026==    by 0x48FDD8E: fclose@@GLIBC_2.2.5 (iofclose.c:53)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2a0 is 112 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD8F: _IO_acquire_lock_fct (libioP.h:883)
+==68026==    by 0x48FDD8F: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCA1: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDCA1: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDCA8: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDCA8: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd314 is 228 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid write of size 8
+==68026==    at 0x48FDDA0: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDDA0: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDDA8: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDDA8: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd310 is 224 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCB2: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd308 is 216 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x490AFFD: _IO_file_finish@@GLIBC_2.2.5 (fileops.c:169)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2a0 is 112 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x490D738: _IO_default_finish (genops.c:603)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd268 is 56 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x490D747: _IO_default_finish (genops.c:609)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd290 is 96 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x490D760: _IO_default_finish (genops.c:612)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd278 is 72 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 1
+==68026==    at 0x490D776: _IO_un_link (genops.c:54)
+==68026==    by 0x490D776: _IO_default_finish (genops.c:618)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 4
+==68026==    at 0x48FDCE1: fclose@@GLIBC_2.2.5 (iofclose.c:58)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2f0 is 192 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCEF: fclose@@GLIBC_2.2.5 (iofclose.c:71)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd278 is 72 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== Invalid free() / delete / delete[] / realloc()
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== HEAP SUMMARY:
+==68026==     in use at exit: 33,232 bytes in 7 blocks
+==68026==   total heap usage: 90 allocs, 85 frees, 221,858 bytes allocated
+==68026== 
+==68026== Searching for pointers to 7 not-freed blocks
+==68026== Checked 180,816 bytes
+==68026== 
+==68026== 76 bytes in 1 blocks are indirectly lost in loss record 1 of 4
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x4989049: gaih_inet.constprop.0 (getaddrinfo.c:1039)
+==68026==    by 0x498B5C8: getaddrinfo (getaddrinfo.c:2240)
+==68026==    by 0x10A85C: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== 140 (64 direct, 76 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 4
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x4989179: gaih_inet.constprop.0 (getaddrinfo.c:1039)
+==68026==    by 0x498B5C8: getaddrinfo (getaddrinfo.c:2240)
+==68026==    by 0x10A85C: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== 480 bytes in 4 blocks are definitely lost in loss record 3 of 4
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FF122: getdelim (iogetdelim.c:62)
+==68026==    by 0x10ADA7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 32,612 bytes in 1 blocks are definitely lost in loss record 4 of 4
+==68026==    at 0x4851CD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FF17D: getdelim (iogetdelim.c:102)
+==68026==    by 0x10ADA7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== LEAK SUMMARY:
+==68026==    definitely lost: 33,156 bytes in 6 blocks
+==68026==    indirectly lost: 76 bytes in 1 blocks
+==68026==      possibly lost: 0 bytes in 0 blocks
+==68026==    still reachable: 0 bytes in 0 blocks
+==68026==         suppressed: 0 bytes in 0 blocks
+==68026== 
+==68026== ERROR SUMMARY: 83 errors from 57 contexts (suppressed: 0 from 0)
+==68026== 
+==68026== 1 errors in context 1 of 57:
+==68026== Invalid free() / delete / delete[] / realloc()
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 2 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCEF: fclose@@GLIBC_2.2.5 (iofclose.c:71)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd278 is 72 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 3 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDCE1: fclose@@GLIBC_2.2.5 (iofclose.c:58)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2f0 is 192 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 4 of 57:
+==68026== Invalid read of size 1
+==68026==    at 0x490D776: _IO_un_link (genops.c:54)
+==68026==    by 0x490D776: _IO_default_finish (genops.c:618)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 5 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x490D760: _IO_default_finish (genops.c:612)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd278 is 72 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 6 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x490D747: _IO_default_finish (genops.c:609)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd290 is 96 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 7 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x490D738: _IO_default_finish (genops.c:603)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd268 is 56 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 8 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x490AFFD: _IO_file_finish@@GLIBC_2.2.5 (fileops.c:169)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2a0 is 112 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 9 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCB2: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd308 is 216 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 10 of 57:
+==68026== Invalid write of size 8
+==68026==    at 0x48FDDA0: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDDA0: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 11 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCA1: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDCA1: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 12 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD8F: _IO_acquire_lock_fct (libioP.h:883)
+==68026==    by 0x48FDD8F: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 13 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x490AE98: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:130)
+==68026==    by 0x48FDD8E: fclose@@GLIBC_2.2.5 (iofclose.c:53)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2a0 is 112 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 14 of 57:
+==68026== Invalid write of size 8
+==68026==    at 0x48FDD6E: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 15 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD6B: fclose@@GLIBC_2.2.5 (iofclose.c:52)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 16 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD64: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 17 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD4D: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 18 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD46: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 19 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD35: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 20 of 57:
+==68026== Invalid read of size 1
+==68026==    at 0x490C2B4: _IO_un_link (genops.c:54)
+==68026==    by 0x48FDD34: fclose@@GLIBC_2.2.5 (iofclose.c:49)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 21 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDC7B: fclose@@GLIBC_2.2.5 (iofclose.c:48)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 22 of 57:
+==68026== Invalid free() / delete / delete[] / realloc()
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 23 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCEF: fclose@@GLIBC_2.2.5 (iofclose.c:71)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd278 is 72 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 24 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDCE1: fclose@@GLIBC_2.2.5 (iofclose.c:58)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2f0 is 192 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 25 of 57:
+==68026== Invalid read of size 1
+==68026==    at 0x490D776: _IO_un_link (genops.c:54)
+==68026==    by 0x490D776: _IO_default_finish (genops.c:618)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 26 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x490D760: _IO_default_finish (genops.c:612)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd278 is 72 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 27 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x490D747: _IO_default_finish (genops.c:609)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd290 is 96 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 28 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x490D738: _IO_default_finish (genops.c:603)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd268 is 56 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 29 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x490AFFD: _IO_file_finish@@GLIBC_2.2.5 (fileops.c:169)
+==68026==    by 0x48FDCE0: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2a0 is 112 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 30 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCB2: fclose@@GLIBC_2.2.5 (iofclose.c:57)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd308 is 216 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 31 of 57:
+==68026== Invalid write of size 8
+==68026==    at 0x48FDDA0: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDDA0: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 32 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDCA1: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDCA1: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 33 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD8F: _IO_acquire_lock_fct (libioP.h:883)
+==68026==    by 0x48FDD8F: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 34 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x490AE98: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:130)
+==68026==    by 0x48FDD8E: fclose@@GLIBC_2.2.5 (iofclose.c:53)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2a0 is 112 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 35 of 57:
+==68026== Invalid write of size 8
+==68026==    at 0x48FDD6E: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 36 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD6B: fclose@@GLIBC_2.2.5 (iofclose.c:52)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 37 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD64: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 38 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD4D: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd318 is 232 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 39 of 57:
+==68026== Invalid read of size 8
+==68026==    at 0x48FDD46: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd2b8 is 136 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 40 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD35: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 41 of 57:
+==68026== Invalid read of size 1
+==68026==    at 0x490C2B4: _IO_un_link (genops.c:54)
+==68026==    by 0x48FDD34: fclose@@GLIBC_2.2.5 (iofclose.c:49)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 1 errors in context 42 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDC7B: fclose@@GLIBC_2.2.5 (iofclose.c:48)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd230 is 0 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 2 errors in context 43 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDCA8: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDCA8: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd314 is 228 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 2 errors in context 44 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD72: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd314 is 228 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 2 errors in context 45 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD5A: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd310 is 224 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 2 errors in context 46 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDCA8: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDCA8: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd314 is 228 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 2 errors in context 47 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD72: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd314 is 228 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 2 errors in context 48 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDD5A: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd310 is 224 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 3 errors in context 49 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDDA8: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDDA8: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10ABCD: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd310 is 224 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 3 errors in context 50 of 57:
+==68026== Invalid read of size 4
+==68026==    at 0x48FDDA8: _IO_acquire_lock_fct (libioP.h:884)
+==68026==    by 0x48FDDA8: fclose@@GLIBC_2.2.5 (iofclose.c:51)
+==68026==    by 0x10B18E: do_shutdown (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AED4: signal_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x48C151F: ??? (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==68026==    by 0x49A664E: accept (accept.c:26)
+==68026==    by 0x10AA9B: main (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==  Address 0x4acd310 is 224 bytes inside a block of size 472 free'd
+==68026==    at 0x484F27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FDD26: _IO_deallocate_file (libioP.h:862)
+==68026==    by 0x48FDD26: fclose@@GLIBC_2.2.5 (iofclose.c:74)
+==68026==    by 0x10ADC7: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Block was alloc'd at
+==68026==    at 0x484C899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48FE64D: __fopen_internal (iofopen.c:65)
+==68026==    by 0x48FE64D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==68026==    by 0x10AD5A: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026== 
+==68026== 
+==68026== 5 errors in context 51 of 57:
+==68026== Thread 2:
+==68026== Conditional jump or move depends on uninitialised value(s)
+==68026==    at 0x4852D79: __strlen_sse2 (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68026==    by 0x48F5D30: __vfprintf_internal (vfprintf-internal.c:1517)
+==68026==    by 0x499D1A9: __vsyslog_internal (syslog.c:229)
+==68026==    by 0x499D689: syslog (syslog.c:109)
+==68026==    by 0x10AE85: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Uninitialised value was created by a stack allocation
+==68026==    at 0x10ABF1: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== 
+==68026== 5 errors in context 52 of 57:
+==68026== Conditional jump or move depends on uninitialised value(s)
+==68026==    at 0x49C709C: inet_ntop (inet_ntop.c:55)
+==68026==    by 0x10AE62: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Uninitialised value was created by a stack allocation
+==68026==    at 0x10ABF1: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== 
+==68026== 5 errors in context 53 of 57:
+==68026== Conditional jump or move depends on uninitialised value(s)
+==68026==    at 0x49C7097: inet_ntop (inet_ntop.c:55)
+==68026==    by 0x10AE62: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Uninitialised value was created by a stack allocation
+==68026==    at 0x10ABF1: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== 
+==68026== 5 errors in context 54 of 57:
+==68026== Conditional jump or move depends on uninitialised value(s)
+==68026==    at 0x10B35D: get_in_addr (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x10AE42: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026==    by 0x4913AC2: start_thread (pthread_create.c:442)
+==68026==    by 0x49A4BF3: clone (clone.S:100)
+==68026==  Uninitialised value was created by a stack allocation
+==68026==    at 0x10ABF1: client_handler (in /home/bj/embedded_linux/assignments-3-and-later-Beshario/server/aesdsocket)
+==68026== 
+==68026== ERROR SUMMARY: 83 errors from 57 contexts (suppressed: 0 from 0)
