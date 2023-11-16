@@ -87,7 +87,8 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "server: failed to bind\n");
         exit(1);
     }
-    // successfull bind
+    // successfull bind, free addrinfo, and/or start a daemon
+    freeaddrinfo(servinfo);
     if (isDaemon) {
         printf("%s\n","making daemon" );
         make_Daemon();
@@ -170,16 +171,18 @@ void* client_handler(void *arg)
     file = fopen(DATA_FILE, "a+");
     while ((read_size = getline(&line, &len, file))  !=-1) {
             send(thread_data->client_fd, line, read_size, 0);
+            free(line);
+            line = NULL;
+            len = 0;
     }
+    free(line);
+    line = NULL;
     fclose(file);
     printf("saved file \n");
     pthread_mutex_unlock(&fileMutex); 
 
     // Mark the thread as complete
-    thread_data->isComplete = 1;
-
-    close(thread_data->client_fd);
-    
+    thread_data->isComplete = 1; 
     // get client addresses
     
     char client_IP[INET6_ADDRSTRLEN];
@@ -194,6 +197,7 @@ void* client_handler(void *arg)
             s, sizeof s);
         // sys log address
 
+    close(thread_data->client_fd);
     syslog(LOG_INFO, "Closed connection from %s", s);
     return NULL;
 }
